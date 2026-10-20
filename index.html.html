@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>40 MCQs - Functions | Grade 12 LS - Lebanese Official Exam Practice</title>
+
+<!-- MathJax for proper math rendering -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      processEscapes: true
+    },
+    svg: { fontCache: 'global' },
+    startup: {
+      pageReady: () => {
+        return MathJax.startup.defaultPageReady().then(() => {
+          if (window.onMathJaxReady) window.onMathJaxReady();
+        });
+      }
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: #f4f7fb;
+    color: #2c3e50;
+    padding: 20px;
+  }
+
+  /* Header */
+  header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #0ea5e9 100%);
+    color: white;
+    padding: 28px 32px;
+    border-radius: 14px;
+    margin-bottom: 22px;
+    box-shadow: 0 6px 20px rgba(30,58,138,0.25);
+  }
+  header h1 { font-size: 1.85em; margin-bottom: 6px; letter-spacing: 0.3px; }
+  header .subtitle { opacity: 0.92; font-size: 1em; }
+  header .meta { margin-top: 10px; font-size: 0.9em; opacity: 0.85; }
+
+  /* Sticky Toolbar */
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 14px 22px;
+    border-radius: 10px;
+    margin-bottom: 22px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 8px;
+    z-index: 100;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .score-block { font-size: 1.02em; font-weight: 600; display: flex; gap: 18px; flex-wrap: wrap; }
+  .score-block span.val { color: #2563eb; font-weight: 700; }
+  .score-block .correct-val { color: #10b981; }
+  .score-block .wrong-val { color: #ef4444; }
+  .progress-bar {
+    width: 100%;
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    margin-top: 6px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb, #10b981);
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+  .buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+  .buttons button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.92em;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .buttons button:hover { background: #1e3a8a; }
+  .buttons button:active { transform: scale(0.97); }
+  .buttons button.secondary { background: #64748b; }
+  .buttons button.secondary:hover { background: #475569; }
+
+  /* Topic Navigation */
+  .topic-nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .topic-nav a {
+    text-decoration: none;
+    background: white;
+    color: #1e3a8a;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 0.88em;
+    font-weight: 600;
+    border: 1.5px solid #cbd5e1;
+    transition: all 0.2s;
+  }
+  .topic-nav a:hover { background: #2563eb; color: white; border-color: #2563eb; }
+
+  /* Topic Section */
+  .topic {
+    background: white;
+    border-radius: 12px;
+    padding: 26px;
+    margin-bottom: 22px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  .topic h2 {
+    color: #1e3a8a;
+    border-bottom: 3px solid #2563eb;
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .topic h2 .badge {
+    background: #2563eb;
+    color: white;
+    font-size: 0.6em;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  .topic-desc {
+    font-size: 0.92em;
+    color: #64748b;
+    margin-bottom: 18px;
+    font-style: italic;
+  }
+
+  /* Question Card */
+  .question {
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    background: #fafbfc;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .question.answered { border-color: #93c5fd; }
+  .question.correct { border-color: #10b981; background: #f0fdf4; }
+  .question.incorrect { border-color: #ef4444; background: #fef2f2; }
+
+  .q-text {
+    font-size: 1.08em;
+    margin-bottom: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .q-number {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 32px;
+    font-size: 0.88em;
+    flex-shrink: 0;
+  }
+  .q-content { flex: 1; line-height: 1.8; }
+  .q-content mjx-container { font-size: 1.05em !important; }
+
+  /* Options */
+  .options { list-style: none; margin-bottom: 14px; }
+  .options li {
+    padding: 12px 16px;
+    margin: 8px 0;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.18s;
+    background: white;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.05em;
+    line-height: 1.7;
+  }
+  .options li:hover { border-color: #93c5fd; background: #eff6ff; }
+  .options li .opt-letter {
+    display: inline-block;
+    background: #cbd5e1;
+    color: #1e293b;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-weight: 700;
+    font-size: 0.92em;
+    flex-shrink: 0;
+  }
+  .options li.selected { border-color: #2563eb; background: #dbeafe; }
+  .options li.selected .opt-letter { background: #2563eb; color: white; }
+  .options li.correct-answer { border-color: #10b981; background: #d1fae5; }
+  .options li.correct-answer .opt-letter { background: #10b981; color: white; }
+  .options li.wrong-answer { border-color: #ef4444; background: #fee2e2; }
+  .options li.wrong-answer .opt-letter { background: #ef4444; color: white; }
+  .options li.disabled { cursor: not-allowed; }
+  .options li mjx-container { font-size: 1.05em !important; }
+
+  /* Action buttons */
+  .actions { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+  .actions button {
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: opacity 0.2s;
+  }
+  .actions button.hint-btn { background: #f59e0b; }
+  .actions button.solution-btn { background: #8b5cf6; }
+  .actions button:hover { opacity: 0.88; }
+
+  /* Hint and Solution boxes */
+  .hint, .solution {
+    display: none;
+    margin-top: 14px;
+    padding: 14px 18px;
+    border-radius: 6px;
+    font-size: 1em;
+    line-height: 1.85;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+  .hint { background: #fef3c7; border-left: 4px solid #f59e0b; }
+  .solution { background: #ede9fe; border-left: 4px solid #8b5cf6; }
+  .hint.visible, .solution.visible { display: block; }
+  .hint .step-label, .solution .step-label {
+    color: #6d28d9;
+    font-weight: 700;
+    margin-top: 8px;
+    display: block;
+  }
+  .hint .step-label:first-child, .solution .step-label:first-child { margin-top: 0; }
+  .hint .answer-line, .solution .answer-line {
+    color: #1e293b;
+    font-weight: 700;
+    margin-top: 10px;
+    display: block;
+    font-size: 1.05em;
+  }
+  .hint mjx-container, .solution mjx-container { font-size: 1.02em !important; }
+  .solution .math-block { margin: 8px 0; padding-left: 12px; }
+
+  /* Feedback */
+  .feedback {
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 0.98em;
+    display: none;
+  }
+  .feedback.visible { display: block; }
+  .feedback.correct { color: #10b981; }
+  .feedback.incorrect { color: #ef4444; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    color: #64748b;
+    font-size: 0.9em;
+  }
+
+  /* Print styles */
+  @media print {
+    .toolbar, .actions, .topic-nav { display: none !important; }
+    .hint, .solution { display: block !important; }
+    .feedback { display: none !important; }
+    body { padding: 0; background: white; }
+    header { box-shadow: none; }
+    .topic, .question { box-shadow: none; page-break-inside: avoid; }
+    .options li { cursor: default; }
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    header { padding: 18px; }
+    header h1 { font-size: 1.4em; }
+    .topic { padding: 16px; }
+    .question { padding: 14px; }
+    .toolbar { padding: 10px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>40 MCQs &mdash; Functions | Grade 12 LS</h1>
+  <div class="subtitle">Lebanese Official Exam Practice</div>
+  <div class="meta">Topics: Sign of a Function &bull; Inflection Points &bull; Limits (L'Hôpital's Rule) &bull; Image of an Interval &bull; Domain of Definition (Rational &amp; Irrational)</div>
+</header>
+
+<div class="toolbar">
+  <div>
+    <div class="score-block">
+      <div>Answered: <span class="val" id="answered">0</span>/40</div>
+      <div>Correct: <span class="val correct-val" id="correct">0</span></div>
+      <div>Wrong: <span class="val wrong-val" id="wrong">0</span></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div class="buttons">
+    <button onclick="revealAllHints()">Show All Hints</button>
+    <button onclick="revealAllSolutions()" class="secondary">Show All Solutions</button>
+    <button onclick="resetAll()">Reset</button>
+    <button onclick="window.print()">Print</button>
+  </div>
+</div>
+
+<div class="topic-nav">
+  <a href="#topic1">1. Sign of a Function</a>
+  <a href="#topic2">2. Inflection Points</a>
+  <a href="#topic3">3. Limits (L'Hôpital)</a>
+  <a href="#topic4">4. Image of an Interval</a>
+  <a href="#topic5">5. Domain of Definition</a>
+</div>
+
+<div id="quiz"></div>
+
+<footer>
+  Grade 12 LS &mdash; Lebanese Official Exam Practice &bull; Functions &bull; Total: 40 MCQs
+</footer>
+
+<script>
+/* ============================================================
+   40 MCQs - Grade 12 LS - Functions
+   Math rendered via MathJax (LaTeX notation)
+   ============================================================ */
+
+const questions = [
+  /* ===== TOPIC 1: SIGN OF A FUNCTION (Q1 - Q8) ===== */
+  {
+    topic: 1,
+    question: "Let \\( f(x) = -x^2 + 4x - 5 \\). What is the sign of \\( f(x) \\) on \\( \\mathbb{R} \\)?",
+    options: [
+      "\\( f(x) > 0 \\) for all \\( x \\in \\mathbb{R} \\)",
+      "\\( f(x) < 0 \\) for all \\( x \\in \\mathbb{R} \\)",
+      "\\( f(x) = 0 \\) at \\( x = 2 \\)"
+    ],
+    correct: 1,
+    hint: "Compute the discriminant \\( \\Delta = b^2 - 4ac \\) and inspect the leading coefficient.",
+    solution: "<span class='step-label'>Step 1 — Compute the discriminant:</span><div class='math-block'>\\( \\Delta = b^2 - 4ac = (4)^2 - 4(-1)(-5) = 16 - 20 = -4 \\)</div><span class='step-label'>Step 2 — Interpret:</span>Since \\( \\Delta = -4 < 0 \\), the quadratic has no real roots. The leading coefficient is \\( a = -1 < 0 \\), so the parabola opens downward and never crosses the x-axis.<span class='step-label'>Step 3 — Conclusion:</span>\\( f(x) < 0 \\) for all \\( x \\in \\mathbb{R} \\).<span class='answer-line'>Answer: b.</span>"
+  },
+  {
+    topic: 1,
+    question: "Let \\( f(x) = x^2 - 5x + 6 \\). The sign of \\( f(x) \\) is:",
+    options: [
+      "\\( f(x) \\geq 0 \\) on \\( ]-\\infty,\\, 2] \\cup [3,\\, +\\infty[ \\)",
+      "\\( f(x) \\geq 0 \\) on \\( [2,\\, 3] \\)",
+      "\\( f(x) < 0 \\) on \\( \\mathbb{R} \\)"
+    ],
+    correct: 0,
+    hint: "Factor: \\( x^2 - 5x + 6 = (x-2)(x-3) \\).",
+    solution: "<span class='step-label'>Step 1 — Find the roots:</span><div class='math-block'>\\( x^2 - 5x + 6 = 0 \\implies x = 2 \\) and \\( x = 3 \\)</div><span class='step-label'>Step 2 — Sign analysis:</span>The leading coefficient \\( a = 1 > 0 \\), so the parabola opens upward. Therefore \\( f \\geq 0 \\) outside the roots (i.e., on \\( ]-\\infty, 2] \\cup [3, +\\infty[ \\)) and \\( f \\leq 0 \\) between the roots.<span class='answer-line'>Answer: a.</span>"
+  },
+  {
+    topic: 1,
+    question: "Let \\( f(x) = -x^2 + 2x + 3 \\). What is the sign of \\( f(x) \\) on \\( \\mathbb{R} \\)?",
+    options: [
+      "\\( f(x) \\leq 0 \\) on \\( \\mathbb{R} \\)",
+      "\\( f(x) \\geq 0 \\) on \\( [-1,\\, 3] \\)",
+      "\\( f(x) > 0 \\) on \\( ]-\\infty,\\, -1[ \\cup ]3,\\, +\\infty[ \\)"
+    ],
+    correct: 1,
+    hint: "\\( \\Delta = 4 + 12 = 16 \\). Roots: \\( x = -1 \\) and \\( x = 3 \\).",
+    solution: "<span class='step-label'>Step 1 — Compute discriminant and roots:</span><div class='math-block'>\\( \\Delta = 4 + 12 = 16 \\), so \\( x = \\frac{-2 \\pm 4}{-2} \\), giving \\( x = -1 \\) and \\( x = 3 \\).</div><span class='step-label'>Step 2 — Factor:</span>\\( f(x) = -(x - 3)(x + 1) \\).<span class='step-label'>Step 3 — Sign analysis:</span>The leading coefficient is negative, so \\( f \\geq 0 \\) between the roots.<span class='answer-line'>Answer: b — \\( f(x) \\geq 0 \\) on \\( [-1,\\, 3] \\).</span>"
+  },
+  {
+    topic: 1,
+    question: "Let \\( f(x) = x^2 + 2x + 5 \\). The sign of \\( f(x) \\) is:",
+    options: [
+      "\\( f(x) > 0 \\) for all \\( x \\in \\mathbb{R} \\)",
+      "\\( f(x) < 0 \\) for all \\( x \\in \\mathbb{R} \\)",
+      "\\( f(x) = 0 \\) at \\( x = -1 \\)"
+    ],
+    correct: 0,
+    hint: "\\( \\Delta = 4 - 20 = -16 < 0 \\); leading coefficient is positive.",
+    solution: "<span class='step-label'>Step 1 — Compute discriminant:</span><div class='math-block'>\\( \\Delta = (2)^2 - 4(1)(5) = 4 - 20 = -16 < 0 \\)</div><span class='step-label'>Step 2 — Interpret:</span>No real roots; leading coefficient \\( a = 1 > 0 \\), so the parabola opens upward and stays above the x-axis.<span class='answer-line'>Answer: a — \\( f(x) > 0 \\) for all \\( x \\in \\mathbb{R} \\).</span>"
+  },
+  {
+    topic: 1,
+    question: "Let \\( f(x) = \\dfrac{(x-1)(x+2)}{x-3} \\). The sign of \\( f(x) \\) is:",
+    options: [
+      "\\( f(x) \\geq 0 \\) on \\( [-2,\\, 1] \\cup ]3,\\, +\\infty[ \\)",
+      "\\( f(x) \\geq 0 \\) on \\( ]-\\infty,\\, -2] \\cup [1,\\, 3[ \\)",
+      "\\( f(x) \\leq 0 \\) on \\( \\mathbb{R} \\)"
+    ],
+    correct: 0,
+    hint: "Build a sign table with critical values \\( -2, 1, 3 \\) (3 is excluded).",
+    solution: "<span class='step-label'>Step 1 — Identify critical values:</span>\\( x = -2 \\), \\( x = 1 \\) (zeros), and \\( x = 3 \\) (excluded value).<span class='step-label'>Step 2 — Sign table:</span><div class='math-block'>\\( ]-\\infty, -2[ \\): \\( f < 0 \\)<br>\\( ]-2, 1[ \\): \\( f > 0 \\)<br>\\( ]1, 3[ \\): \\( f < 0 \\)<br>\\( ]3, +\\infty[ \\): \\( f > 0 \\)</div><span class='step-label'>Step 3 — Conclusion:</span><span class='answer-line'>Answer: a — \\( f(x) \\geq 0 \\) on \\( [-2,\\, 1] \\cup ]3,\\, +\\infty[ \\).</span>"
+  },
+  {
+    topic: 1,
+    question: "Let \\( f(x) = -2x^2 + 8x - 8 \\). The sign of \\( f(x) \\) is:",
+    options: [
+      "\\( f(x) \\geq 0 \\) on \\( \\mathbb{R} \\)",
+      "\\( f(x) \\leq 0 \\) for all \\( x \\), with \\( f(2) = 0 \\)",
+      "\\( f(x) > 0 \\) on \\( ]-\\infty,\\, 2[ \\cup ]2,\\, +\\infty[ \\)"
+    ],
+    correct: 1,
+    hint: "\\( \\Delta = 64 - 64 = 0 \\) → double root at \\( x = 2 \\).",
+    solution: "<span class='step-label'>Step 1 — Compute discriminant:</span><div class='math-block'>\\( \\Delta = 64 - 4(-2)(-8) = 64 - 64 = 0 \\)</div><span class='step-label'>Step 2 — Find the double root:</span>\\( x = \\frac{-8}{2(-2)} = 2 \\).<span class='step-label'>Step 3 — Factor:</span>\\( f(x) = -2(x - 2)^2 \\).<span class='step-label'>Step 4 — Sign analysis:</span>Since \\( (x-2)^2 \\geq 0 \\) and the coefficient is \\( -2 < 0 \\), we have \\( f(x) \\leq 0 \\) for all \\( x \\), with equality at \\( x = 2 \\).<span class='answer-line'>Answer: b.</span>"
+  },
+  {
+    topic: 1,
+    question: "Let \\( f(x) = x^2 - 4 \\). What is the sign of \\( f(x) \\) on the interval \\( [-3,\\, 1] \\)?",
+    options: [
+      "\\( f(x) \\geq 0 \\) on \\( [-3,\\, 1] \\)",
+      "\\( f(x) \\geq 0 \\) on \\( [-3,\\, -2] \\) and \\( f(x) \\leq 0 \\) on \\( [-2,\\, 1] \\)",
+      "\\( f(x) < 0 \\) on \\( [-3,\\, 1] \\)"
+    ],
+    correct: 1,
+    hint: "Roots are \\( x = \\pm 2 \\). Only \\( x = -2 \\) lies in \\( [-3, 1] \\).",
+    solution: "<span class='step-label'>Step 1 — Find the roots:</span>\\( x^2 - 4 = 0 \\implies x = \\pm 2 \\).<span class='step-label'>Step 2 — Identify which roots lie in \\( [-3, 1] \\):</span>Only \\( x = -2 \\) lies in the interval.<span class='step-label'>Step 3 — Evaluate at endpoints and critical point:</span><div class='math-block'>\\( f(-3) = 9 - 4 = 5 > 0 \\)<br>\\( f(-2) = 0 \\)<br>\\( f(1) = 1 - 4 = -3 < 0 \\)</div><span class='step-label'>Step 4 — Conclusion:</span>\\( f \\geq 0 \\) on \\( [-3, -2] \\) and \\( f \\leq 0 \\) on \\( [-2, 1] \\).<span class='answer-line'>Answer: b.</span>"
+  },
+  {
+    topic: 1,
+    question: "Let \\( f(x) = 4 - x^2 \\). The sign of \\( f(x) \\) on \\( \\mathbb{R} \\) is:",
+    options: [
+      "\\( f(x) \\geq 0 \\) on \\( [-2,\\, 2] \\)",
+      "\\( f(x) \\leq 0 \\) on \\( \\mathbb{R} \\)",
+      "\\( f(x) > 0 \\) on \\( ]-\\infty,\\, -2[ \\cup ]2,\\, +\\infty[ \\)"
+    ],
+    correct: 0,
+    hint: "Factor as \\( (2 - x)(2 + x) \\). Roots at \\( \\pm 2 \\).",
+    solution: "<span class='step-label'>Step 1 — Factor:</span>\\( f(x) = (2-x)(2+x) = -x^2 + 4 \\). Roots at \\( x = \\pm 2 \\).<span class='step-label'>Step 2 — Sign analysis:</span>Leading coefficient is \\( -1 < 0 \\), so \\( f \\geq 0 \\) between the roots and \\( f \\leq 0 \\) outside.<span class='answer-line'>Answer: a — \\( f(x) \\geq 0 \\) on \\( [-2,\\, 2] \\).</span>"
+  },
+
+  /* ===== TOPIC 2: INFLECTION POINTS (Q9 - Q16) ===== */
+  {
+    topic: 2,
+    question: "Let \\( f(x) = x^3 - 3x^2 + 2 \\). The inflection point of the curve \\( (C) \\) is:",
+    options: [
+      "\\( I(1,\\, 0) \\)",
+      "\\( I(0,\\, 2) \\)",
+      "\\( I(3,\\, 2) \\)"
+    ],
+    correct: 0,
+    hint: "Solve \\( f''(x) = 0 \\) and confirm a sign change of \\( f'' \\).",
+    solution: "<span class='step-label'>Step 1 — Compute first and second derivatives:</span><div class='math-block'>\\( f'(x) = 3x^2 - 6x \\)<br>\\( f''(x) = 6x - 6 \\)</div><span class='step-label'>Step 2 — Solve \\( f''(x) = 0 \\):</span>\\( 6x - 6 = 0 \\implies x = 1 \\).<span class='step-label'>Step 3 — Verify sign change:</span>\\( f''(x) = 6(x - 1) \\), so \\( f'' < 0 \\) for \\( x < 1 \\) and \\( f'' > 0 \\) for \\( x > 1 \\). Sign change confirmed → inflection point.<span class='step-label'>Step 4 — Compute \\( f(1) \\):</span>\\( f(1) = 1 - 3 + 2 = 0 \\).<span class='answer-line'>Answer: a — Inflection point \\( I(1, 0) \\).</span>"
+  },
+  {
+    topic: 2,
+    question: "Let \\( f(x) = x^3 + 3x^2 - 1 \\). The inflection point of \\( (C) \\) is:",
+    options: [
+      "\\( I(-1,\\, 0) \\)",
+      "\\( I(-1,\\, 1) \\)",
+      "No inflection point"
+    ],
+    correct: 1,
+    hint: "\\( f''(x) = 6x + 6 \\).",
+    solution: "<span class='step-label'>Step 1 — Compute second derivative:</span>\\( f'(x) = 3x^2 + 6x \\), \\( f''(x) = 6x + 6 \\).<span class='step-label'>Step 2 — Solve \\( f''(x) = 0 \\):</span>\\( 6x + 6 = 0 \\implies x = -1 \\).<span class='step-label'>Step 3 — Verify sign change:</span>\\( f''(x) = 6(x + 1) \\). For \\( x < -1 \\), \\( f'' < 0 \\); for \\( x > -1 \\), \\( f'' > 0 \\). Sign change confirmed.<span class='step-label'>Step 4 — Compute \\( f(-1) \\):</span>\\( f(-1) = -1 + 3 - 1 = 1 \\).<span class='answer-line'>Answer: b — Inflection point \\( I(-1, 1) \\).</span>"
+  },
+  {
+    topic: 2,
+    question: "Let \\( f(x) = (x + 1)^4 \\), defined on \\( \\mathbb{R} \\). Which statement is correct?",
+    options: [
+      "The curve has an inflection point \\( I(-1,\\, 0) \\)",
+      "The curve is concave up when \\( x < -1 \\)",
+      "The curve is concave down when \\( x < -1 \\)"
+    ],
+    correct: 1,
+    hint: "\\( f''(x) = 12(x + 1)^2 \\). Does \\( f'' \\) change sign?",
+    solution: "<span class='step-label'>Step 1 — Compute second derivative:</span>\\( f'(x) = 4(x+1)^3 \\), \\( f''(x) = 12(x+1)^2 \\).<span class='step-label'>Step 2 — Solve \\( f''(x) = 0 \\):</span>\\( 12(x+1)^2 = 0 \\implies x = -1 \\).<span class='step-label'>Step 3 — Check sign change:</span>\\( (x+1)^2 \\geq 0 \\) for all \\( x \\), so \\( f''(x) \\geq 0 \\) everywhere. No sign change at \\( x = -1 \\) → no inflection point.<span class='step-label'>Step 4 — Conclusion:</span>The curve is concave up on all of \\( \\mathbb{R} \\), including for \\( x < -1 \\).<span class='answer-line'>Answer: b.</span>"
+  },
+  {
+    topic: 2,
+    question: "Let \\( f(x) = x^4 - 6x^2 + 8x \\). The inflection points of \\( (C) \\) are:",
+    options: [
+      "\\( I(1,\\, 3) \\) and \\( I(-1,\\, -13) \\)",
+      "\\( I(-1,\\, 3) \\) and \\( I(1,\\, -13) \\)",
+      "\\( I(1,\\, 0) \\) and \\( I(-1,\\, 0) \\)"
+    ],
+    correct: 0,
+    hint: "\\( f''(x) = 12x^2 - 12 \\).",
+    solution: "<span class='step-label'>Step 1 — Compute second derivative:</span>\\( f'(x) = 4x^3 - 12x + 8 \\), \\( f''(x) = 12x^2 - 12 \\).<span class='step-label'>Step 2 — Solve \\( f''(x) = 0 \\):</span>\\( 12x^2 - 12 = 0 \\implies x^2 = 1 \\implies x = \\pm 1 \\).<span class='step-label'>Step 3 — Verify sign change:</span>\\( f''(x) = 12(x-1)(x+1) \\). Sign changes at both \\( x = -1 \\) and \\( x = 1 \\). Both are inflection points.<span class='step-label'>Step 4 — Compute \\( f \\) at these points:</span><div class='math-block'>\\( f(1) = 1 - 6 + 8 = 3 \\)<br>\\( f(-1) = 1 - 6 - 8 = -13 \\)</div><span class='answer-line'>Answer: a — \\( I(1, 3) \\) and \\( I(-1, -13) \\).</span>"
+  },
+  {
+    topic: 2,
+    question: "Let \\( f \\) be twice differentiable on \\( \\mathbb{R} \\) with \\( f''(x) = (x^2 - 2x + 1)(3 + x) \\). The curve of \\( f \\) has:",
+    options: [
+      "No inflection point",
+      "One inflection point",
+      "Two inflection points"
+    ],
+    correct: 1,
+    hint: "Factor: \\( f''(x) = (x-1)^2 (x+3) \\). Check sign changes.",
+    solution: "<span class='step-label'>Step 1 — Factor \\( f'' \\):</span>\\( f''(x) = (x-1)^2 (x+3) \\).<span class='step-label'>Step 2 — Find zeros:</span>\\( x = 1 \\) (double root) and \\( x = -3 \\) (simple root).<span class='step-label'>Step 3 — Check sign change at each zero:</span><div class='math-block'>At \\( x = -3 \\): simple root → sign changes ✓ (inflection point)<br>At \\( x = 1 \\): double root → sign does NOT change ✗ (no inflection)</div><span class='step-label'>Step 4 — Conclusion:</span>Only one inflection point at \\( x = -3 \\).<span class='answer-line'>Answer: b — One inflection point.</span>"
+  },
+  {
+    topic: 2,
+    question: "Let \\( f(x) = x^3 - 6x^2 + 12x - 8 \\). The inflection point is:",
+    options: [
+      "\\( I(2,\\, 0) \\)",
+      "\\( I(2,\\, 8) \\)",
+      "No inflection point"
+    ],
+    correct: 0,
+    hint: "\\( f''(x) = 6x - 12 \\).",
+    solution: "<span class='step-label'>Step 1 — Compute second derivative:</span>\\( f'(x) = 3x^2 - 12x + 12 \\), \\( f''(x) = 6x - 12 \\).<span class='step-label'>Step 2 — Solve \\( f''(x) = 0 \\):</span>\\( 6x - 12 = 0 \\implies x = 2 \\).<span class='step-label'>Step 3 — Verify sign change:</span>\\( f''(x) = 6(x - 2) \\). Sign changes from negative to positive at \\( x = 2 \\).<span class='step-label'>Step 4 — Compute \\( f(2) \\):</span>\\( f(2) = 8 - 24 + 24 - 8 = 0 \\).<span class='answer-line'>Answer: a — Inflection point \\( I(2, 0) \\).</span>"
+  },
+  {
+    topic: 2,
+    question: "Let \\( f(x) = -x^3 + 3x^2 - 3x + 1 \\). The inflection point is:",
+    options: [
+      "\\( I(1,\\, 0) \\)",
+      "\\( I(1,\\, 1) \\)",
+      "\\( I(-1,\\, -8) \\)"
+    ],
+    correct: 0,
+    hint: "\\( f''(x) = -6x + 6 \\).",
+    solution: "<span class='step-label'>Step 1 — Compute second derivative:</span>\\( f'(x) = -3x^2 + 6x - 3 \\), \\( f''(x) = -6x + 6 \\).<span class='step-label'>Step 2 — Solve \\( f''(x) = 0 \\):</span>\\( -6x + 6 = 0 \\implies x = 1 \\).<span class='step-label'>Step 3 — Verify sign change:</span>\\( f''(x) = -6(x - 1) \\). Sign changes from positive (for \\( x < 1 \\)) to negative (for \\( x > 1 \\)).<span class='step-label'>Step 4 — Compute \\( f(1) \\):</span>\\( f(1) = -1 + 3 - 3 + 1 = 0 \\).<span class='answer-line'>Answer: a — Inflection point \\( I(1, 0) \\).</span>"
+  },
+  {
+    topic: 2,
+    question: "Let \\( f(x) = (x - 1)^4 \\) defined on \\( \\mathbb{R} \\). The curve of \\( f \\):",
+    options: [
+      "Has an inflection point at \\( I(1,\\, 0) \\)",
+      "Is concave up on \\( \\mathbb{R} \\) (no inflection point)",
+      "Has two inflection points"
+    ],
+    correct: 1,
+    hint: "\\( f''(x) = 12(x - 1)^2 \\).",
+    solution: "<span class='step-label'>Step 1 — Compute second derivative:</span>\\( f'(x) = 4(x-1)^3 \\), \\( f''(x) = 12(x-1)^2 \\).<span class='step-label'>Step 2 — Solve \\( f''(x) = 0 \\):</span>\\( 12(x-1)^2 = 0 \\implies x = 1 \\).<span class='step-label'>Step 3 — Check sign change:</span>\\( (x-1)^2 \\geq 0 \\) for all \\( x \\), so \\( f''(x) \\geq 0 \\) everywhere. No sign change at \\( x = 1 \\) → no inflection point.<span class='step-label'>Step 4 — Conclusion:</span>The curve is concave up on all of \\( \\mathbb{R} \\).<span class='answer-line'>Answer: b.</span>"
+  },
+
+  /* ===== TOPIC 3: LIMITS USING L'HÔPITAL'S RULE (Q17 - Q24) ===== */
+  {
+    topic: 3,
+    question: "\\( \\displaystyle\\lim_{x \\to 2} \\frac{-x^2 + 4x - 4}{x^3 - 2x^2 - 4x + 8} = \\,? \\)",
+    options: ["\\( 0 \\)", "\\( -\\dfrac{1}{4} \\)", "\\( \\dfrac{1}{4} \\)"],
+    correct: 1,
+    hint: "Form \\( 0/0 \\) at \\( x = 2 \\). Apply L'Hôpital's rule (twice if necessary).",
+    solution: "<span class='step-label'>Step 1 — Direct substitution at \\( x = 2 \\):</span><div class='math-block'>Numerator: \\( -4 + 8 - 4 = 0 \\)<br>Denominator: \\( 8 - 8 - 8 + 8 = 0 \\)</div>The form is \\( 0/0 \\) (indeterminate) — L'Hôpital's rule applies.<span class='step-label'>Step 2 — First application of L'Hôpital (differentiate numerator and denominator):</span><div class='math-block'>\\( \\text{Num}'(x) = -2x + 4 \\), so \\( \\text{Num}'(2) = 0 \\)<br>\\( \\text{Den}'(x) = 3x^2 - 4x - 4 \\), so \\( \\text{Den}'(2) = 12 - 8 - 4 = 0 \\)</div>Still \\( 0/0 \\) — apply L'Hôpital a second time.<span class='step-label'>Step 3 — Second application of L'Hôpital:</span><div class='math-block'>\\( \\text{Num}''(x) = -2 \\)<br>\\( \\text{Den}''(x) = 6x - 4 \\), so \\( \\text{Den}''(2) = 8 \\)</div>Now the form is \\( -2/8 \\) (determinate).<span class='step-label'>Step 4 — Final result:</span><div class='math-block'>\\[ \\lim = \\frac{-2}{8} = -\\frac{1}{4} \\]</div><span class='answer-line'>Answer: b.</span>"
+  },
+  {
+    topic: 3,
+    question: "\\( \\displaystyle\\lim_{x \\to 1} \\frac{2x - 1 - \\sqrt{x}}{x^3 - 3x^2 + 2} = \\,? \\)",
+    options: ["\\( -\\dfrac{1}{2} \\)", "\\( 1 \\)", "\\( +\\infty \\)"],
+    correct: 0,
+    hint: "Form \\( 0/0 \\). Differentiate numerator and denominator separately.",
+    solution: "<span class='step-label'>Step 1 — Direct substitution at \\( x = 1 \\):</span><div class='math-block'>Numerator: \\( 2 - 1 - 1 = 0 \\)<br>Denominator: \\( 1 - 3 + 2 = 0 \\)</div>The form is \\( 0/0 \\) — L'Hôpital's rule applies.<span class='step-label'>Step 2 — Differentiate numerator and denominator:</span><div class='math-block'>\\( \\text{Num}'(x) = 2 - \\dfrac{1}{2\\sqrt{x}} \\)<br>\\( \\text{Den}'(x) = 3x^2 - 6x \\)</div><span class='step-label'>Step 3 — Evaluate at \\( x = 1 \\):</span><div class='math-block'>\\( \\text{Num}'(1) = 2 - \\dfrac{1}{2} = \\dfrac{3}{2} \\)<br>\\( \\text{Den}'(1) = 3 - 6 = -3 \\)</div>Both derivatives exist, \\( \\text{Den}'(1) \\neq 0 \\) — L'Hôpital applies in one step.<span class='step-label'>Step 4 — Final result:</span><div class='math-block'>\\[ \\lim = \\frac{3/2}{-3} = \\frac{3}{2} \\times \\frac{-1}{3} = -\\frac{1}{2} \\]</div><span class='answer-line'>Answer: a.</span>"
+  },
+  {
+    topic: 3,
+    question: "\\( \\displaystyle\\lim_{x \\to 1} \\frac{\\sqrt{x} - 1}{x - 1} = \\,? \\)",
+    options: [
+      "\\( \\dfrac{1}{2\\sqrt{x}} \\)",
+      "\\( \\dfrac{\\sqrt{x} - x - 1}{2\\sqrt{x}\\,(x-1)^2} \\)",
+      "\\( \\dfrac{1}{2} \\)"
+    ],
+    correct: 2,
+    hint: "Form \\( 0/0 \\). Differentiate numerator (\\( 1/(2\\sqrt{x}) \\)) and denominator (\\( 1 \\)).",
+    solution: "<span class='step-label'>Step 1 — Direct substitution at \\( x = 1 \\):</span><div class='math-block'>Numerator: \\( \\sqrt{1} - 1 = 0 \\)<br>Denominator: \\( 1 - 1 = 0 \\)</div>The form is \\( 0/0 \\) — L'Hôpital's rule applies.<span class='step-label'>Step 2 — Differentiate numerator and denominator:</span><div class='math-block'>\\( \\text{Num}'(x) = \\dfrac{1}{2\\sqrt{x}} \\)<br>\\( \\text{Den}'(x) = 1 \\)</div><span class='step-label'>Step 3 — Evaluate at \\( x = 1 \\):</span><div class='math-block'>\\( \\text{Num}'(1) = \\dfrac{1}{2 \\cdot 1} = \\dfrac{1}{2} \\)<br>\\( \\text{Den}'(1) = 1 \\)</div>\\( \\text{Den}'(1) \\neq 0 \\) — L'Hôpital applies in one step.<span class='step-label'>Step 4 — Final result:</span><div class='math-block'>\\[ \\lim = \\frac{1/2}{1} = \\frac{1}{2} \\]</div><span class='answer-line'>Answer: c.</span>"
+  },
+  {
+    topic: 3,
+    question: "\\( \\displaystyle\\lim_{x \\to 2} \\frac{x^2 - 4x + 4}{2x^3 - 4x^2} = \\,? \\)",
+    options: ["\\( \\dfrac{1}{4} \\)", "\\( \\dfrac{1}{8} \\)", "\\( 0 \\)"],
+    correct: 2,
+    hint: "Form \\( 0/0 \\). Apply L'Hôpital: differentiate numerator (\\( 2x - 4 \\)) and denominator (\\( 6x^2 - 8x \\)), then evaluate at \\( x = 2 \\).",
+    solution: "<span class='step-label'>Step 1 — Direct substitution at \\( x = 2 \\):</span><div class='math-block'>Numerator: \\( 4 - 8 + 4 = 0 \\)<br>Denominator: \\( 16 - 16 = 0 \\)</div>The form is \\( 0/0 \\) — L'Hôpital's rule applies.<span class='step-label'>Step 2 — Differentiate numerator and denominator:</span><div class='math-block'>\\( \\text{Num}'(x) = 2x - 4 \\)<br>\\( \\text{Den}'(x) = 6x^2 - 8x \\)</div><span class='step-label'>Step 3 — Evaluate at \\( x = 2 \\):</span><div class='math-block'>\\( \\text{Num}'(2) = 4 - 4 = 0 \\)<br>\\( \\text{Den}'(2) = 24 - 16 = 8 \\)</div>Now the form is \\( 0/8 \\) — this is <em>not</em> indeterminate (denominator ≠ 0). L'Hôpital is no longer needed.<span class='step-label'>Step 4 — Final result:</span>Since the numerator tends to 0 and the denominator tends to 8 (a non-zero finite value),<div class='math-block'>\\[ \\lim = \\frac{0}{8} = 0 \\]</div><span class='answer-line'>Answer: c.</span>"
+  },
+  {
+    topic: 3,
+    question: "\\( \\displaystyle\\lim_{x \\to 3} \\frac{x^2 - 9}{x^2 - 3x} = \\,? \\)",
+    options: ["\\( 1 \\)", "\\( 2 \\)", "\\( 0 \\)"],
+    correct: 1,
+    hint: "Form \\( 0/0 \\). Apply L'Hôpital: differentiate to get \\( 2x \\) and \\( 2x - 3 \\).",
+    solution: "<span class='step-label'>Step 1 — Direct substitution at \\( x = 3 \\):</span><div class='math-block'>Numerator: \\( 9 - 9 = 0 \\)<br>Denominator: \\( 9 - 9 = 0 \\)</div>The form is \\( 0/0 \\) — L'Hôpital's rule applies.<span class='step-label'>Step 2 — Differentiate numerator and denominator:</span><div class='math-block'>\\( \\text{Num}'(x) = 2x \\)<br>\\( \\text{Den}'(x) = 2x - 3 \\)</div><span class='step-label'>Step 3 — Evaluate at \\( x = 3 \\):</span><div class='math-block'>\\( \\text{Num}'(3) = 6 \\)<br>\\( \\text{Den}'(3) = 6 - 3 = 3 \\)</div>\\( \\text{Den}'(3) \\neq 0 \\) — L'Hôpital applies in one step.<span class='step-label'>Step 4 — Final result:</span><div class='math-block'>\\[ \\lim = \\frac{6}{3} = 2 \\]</div><span class='answer-line'>Answer: b.</span>"
+  },
+  {
+    topic: 3,
+    question: "\\( \\displaystyle\\lim_{x \\to 0} \\frac{\\sqrt{1 + x} - 1}{x} = \\,? \\)",
+    options: ["\\( \\dfrac{1}{2} \\)", "\\( 0 \\)", "\\( 1 \\)"],
+    correct: 0,
+    hint: "Form \\( 0/0 \\). Differentiate numerator: \\( 1/(2\\sqrt{1+x}) \\).",
+    solution: "<span class='step-label'>Step 1 — Direct substitution at \\( x = 0 \\):</span><div class='math-block'>Numerator: \\( \\sqrt{1} - 1 = 0 \\)<br>Denominator: \\( 0 \\)</div>The form is \\( 0/0 \\) — L'Hôpital's rule applies.<span class='step-label'>Step 2 — Differentiate numerator and denominator:</span><div class='math-block'>\\( \\text{Num}'(x) = \\dfrac{d}{dx}(1+x)^{1/2} = \\dfrac{1}{2\\sqrt{1+x}} \\)<br>\\( \\text{Den}'(x) = 1 \\)</div><span class='step-label'>Step 3 — Evaluate at \\( x = 0 \\):</span><div class='math-block'>\\( \\text{Num}'(0) = \\dfrac{1}{2 \\cdot 1} = \\dfrac{1}{2} \\)<br>\\( \\text{Den}'(0) = 1 \\)</div>\\( \\text{Den}'(0) \\neq 0 \\) — L'Hôpital applies in one step.<span class='step-label'>Step 4 — Final result:</span><div class='math-block'>\\[ \\lim = \\frac{1/2}{1} = \\frac{1}{2} \\]</div><span class='answer-line'>Answer: a.</span>"
+  },
+  {
+    topic: 3,
+    question: "\\( \\displaystyle\\lim_{x \\to 3} \\frac{x^2 - 9}{x - 3} = \\,? \\)",
+    options: ["\\( 3 \\)", "\\( 6 \\)", "\\( 0 \\)"],
+    correct: 1,
+    hint: "Form \\( 0/0 \\). Apply L'Hôpital.",
+    solution: "<span class='step-label'>Step 1 — Direct substitution at \\( x = 3 \\):</span><div class='math-block'>Numerator: \\( 9 - 9 = 0 \\)<br>Denominator: \\( 3 - 3 = 0 \\)</div>The form is \\( 0/0 \\) — L'Hôpital's rule applies.<span class='step-label'>Step 2 — Differentiate numerator and denominator:</span><div class='math-block'>\\( \\text{Num}'(x) = 2x \\)<br>\\( \\text{Den}'(x) = 1 \\)</div><span class='step-label'>Step 3 — Evaluate at \\( x = 3 \\):</span><div class='math-block'>\\( \\text{Num}'(3) = 6 \\)<br>\\( \\text{Den}'(3) = 1 \\)</div>\\( \\text{Den}'(3) \\neq 0 \\) — L'Hôpital applies in one step.<span class='step-label'>Step 4 — Final result:</span><div class='math-block'>\\[ \\lim = \\frac{6}{1} = 6 \\]</div><span class='answer-line'>Answer: b.</span>"
+  },
+  {
+    topic: 3,
+    question: "\\( \\displaystyle\\lim_{x \\to 2} \\frac{x^3 - 8}{x^2 - 4} = \\,? \\)",
+    options: ["\\( 1 \\)", "\\( 3 \\)", "\\( 6 \\)"],
+    correct: 1,
+    hint: "Form \\( 0/0 \\). Differentiate: \\( 3x^2 \\) over \\( 2x \\).",
+    solution: "<span class='step-label'>Step 1 — Direct substitution at \\( x = 2 \\):</span><div class='math-block'>Numerator: \\( 8 - 8 = 0 \\)<br>Denominator: \\( 4 - 4 = 0 \\)</div>The form is \\( 0/0 \\) — L'Hôpital's rule applies.<span class='step-label'>Step 2 — Differentiate numerator and denominator:</span><div class='math-block'>\\( \\text{Num}'(x) = 3x^2 \\)<br>\\( \\text{Den}'(x) = 2x \\)</div><span class='step-label'>Step 3 — Evaluate at \\( x = 2 \\):</span><div class='math-block'>\\( \\text{Num}'(2) = 3 \\cdot 4 = 12 \\)<br>\\( \\text{Den}'(2) = 4 \\)</div>\\( \\text{Den}'(2) \\neq 0 \\) — L'Hôpital applies in one step.<span class='step-label'>Step 4 — Final result:</span><div class='math-block'>\\[ \\lim = \\frac{12}{4} = 3 \\]</div><span class='answer-line'>Answer: b.</span>"
+  },
+
+  /* ===== TOPIC 4: IMAGE OF A FUNCTION UNDER AN INTERVAL (Q25 - Q32) ===== */
+  {
+    topic: 4,
+    question: "Let \\( f(x) = -x^2 + 4x - 5 \\). The image of \\( [2,\\, 3] \\) under \\( f \\) is:",
+    options: ["\\( [-1,\\, -2] \\)", "\\( [-2,\\, -1[ \\)", "\\( [-2,\\, -1] \\)"],
+    correct: 2,
+    hint: "Find \\( f'(x) = -2x + 4 \\). Note \\( f \\) is decreasing on \\( [2, 3] \\).",
+    solution: "<span class='step-label'>Step 1 — Compute derivative and find critical points:</span>\\( f'(x) = -2x + 4 = 0 \\implies x = 2 \\) (this is an endpoint of the interval).<span class='step-label'>Step 2 — Determine monotonicity on \\( [2, 3] \\):</span>For \\( x \\in [2, 3] \\), \\( f'(x) = -2x + 4 \\leq 0 \\), so \\( f \\) is <em>decreasing</em> on \\( [2, 3] \\).<span class='step-label'>Step 3 — Evaluate at endpoints:</span><div class='math-block'>\\( f(2) = -4 + 8 - 5 = -1 \\)<br>\\( f(3) = -9 + 12 - 5 = -2 \\)</div><span class='step-label'>Step 4 — Conclusion:</span>Since \\( f \\) is decreasing, the image is \\( [f(3),\\, f(2)] = [-2,\\, -1] \\).<span class='answer-line'>Answer: c.</span>"
+  },
+  {
+    topic: 4,
+    question: "Let \\( f(x) = 2x^2 - 4x - 7 \\). The image of \\( [-1,\\, 2[ \\) under \\( f \\) is:",
+    options: ["\\( [-9,\\, -1] \\)", "\\( ]-7,\\, -1] \\)", "\\( [-9,\\, -7[ \\)"],
+    correct: 0,
+    hint: "\\( f'(x) = 4x - 4 = 0 \\) at \\( x = 1 \\) (in interval). Evaluate at \\( -1, 1, \\) and limit at \\( 2^- \\).",
+    solution: "<span class='step-label'>Step 1 — Compute derivative and find critical points:</span>\\( f'(x) = 4x - 4 = 0 \\implies x = 1 \\), which lies in \\( [-1, 2[ \\).<span class='step-label'>Step 2 — Evaluate at critical point and endpoints:</span><div class='math-block'>\\( f(-1) = 2 + 4 - 7 = -1 \\)<br>\\( f(1) = 2 - 4 - 7 = -9 \\) (minimum)<br>\\( \\lim_{x \\to 2^-} f(x) = 8 - 8 - 7 = -7 \\) (not achieved since 2 is excluded)</div><span class='step-label'>Step 3 — Determine the image:</span>The minimum \\( -9 \\) is achieved at \\( x = 1 \\). The maximum \\( -1 \\) is achieved at \\( x = -1 \\). The value \\( -7 \\) is approached but not achieved.<span class='step-label'>Step 4 — Conclusion:</span>Image \\( = [-9,\\, -1] \\).<span class='answer-line'>Answer: a.</span>"
+  },
+  {
+    topic: 4,
+    question: "Let \\( f(x) = -x^2 + 2x \\). The image of \\( ]-1,\\, 2[ \\) under \\( f \\) is:",
+    options: ["\\( ]-3,\\, 1] \\)", "\\( ]-3,\\, 0[ \\)", "\\( ]0,\\, 3[ \\)"],
+    correct: 0,
+    hint: "\\( f'(x) = -2x + 2 = 0 \\) at \\( x = 1 \\). \\( f(1) = 1 \\) (max).",
+    solution: "<span class='step-label'>Step 1 — Compute derivative and find critical points:</span>\\( f'(x) = -2x + 2 = 0 \\implies x = 1 \\), which lies in \\( ]-1, 2[ \\).<span class='step-label'>Step 2 — Evaluate at critical point and limits at endpoints:</span><div class='math-block'>\\( f(1) = -1 + 2 = 1 \\) (maximum, achieved)<br>\\( \\lim_{x \\to -1^+} f(x) = -1 - 2 = -3 \\) (not achieved)<br>\\( \\lim_{x \\to 2^-} f(x) = -4 + 4 = 0 \\) (not achieved)</div><span class='step-label'>Step 3 — Determine the image:</span>Maximum \\( 1 \\) is achieved at \\( x = 1 \\). The infimum \\( -3 \\) is approached but not achieved.<span class='step-label'>Step 4 — Conclusion:</span>Image \\( = ]-3,\\, 1] \\).<span class='answer-line'>Answer: a.</span>"
+  },
+  {
+    topic: 4,
+    question: "Let \\( f(x) = x^3 - x^2 - x \\), defined on \\( \\mathbb{R} \\). The image of \\( [0,\\, 2] \\) under \\( f \\) is:",
+    options: ["\\( [0,\\, 2] \\)", "\\( [-1,\\, 0] \\)", "\\( [-1,\\, 2] \\)"],
+    correct: 2,
+    hint: "\\( f'(x) = 3x^2 - 2x - 1 = (3x + 1)(x - 1) \\). Critical point at \\( x = 1 \\).",
+    solution: "<span class='step-label'>Step 1 — Compute derivative and find critical points:</span>\\( f'(x) = 3x^2 - 2x - 1 = (3x + 1)(x - 1) \\). Roots: \\( x = -1/3 \\) (not in interval) and \\( x = 1 \\) (in interval).<span class='step-label'>Step 2 — Evaluate at critical point and endpoints:</span><div class='math-block'>\\( f(0) = 0 \\)<br>\\( f(1) = 1 - 1 - 1 = -1 \\) (minimum)<br>\\( f(2) = 8 - 4 - 2 = 2 \\) (maximum)</div><span class='step-label'>Step 3 — Determine the image:</span>The minimum value is \\( -1 \\) (at \\( x = 1 \\)) and the maximum is \\( 2 \\) (at \\( x = 2 \\)).<span class='step-label'>Step 4 — Conclusion:</span>Image \\( = [-1,\\, 2] \\).<span class='answer-line'>Answer: c.</span>"
+  },
+  {
+    topic: 4,
+    question: "Let \\( f(x) = 2x^3 - 3x^2 - 12x \\), defined on \\( \\mathbb{R} \\). The image of \\( [0,\\, 3] \\) under \\( f \\) is:",
+    options: ["\\( [-20,\\, -9] \\)", "\\( [-20,\\, 0] \\)", "\\( [-9,\\, 0] \\)"],
+    correct: 1,
+    hint: "\\( f'(x) = 6x^2 - 6x - 12 = 6(x - 2)(x + 1) \\). Critical point in \\( [0, 3] \\) is \\( x = 2 \\).",
+    solution: "<span class='step-label'>Step 1 — Compute derivative and find critical points:</span>\\( f'(x) = 6x^2 - 6x - 12 = 6(x - 2)(x + 1) \\). Roots: \\( x = -1 \\) (not in interval) and \\( x = 2 \\) (in interval).<span class='step-label'>Step 2 — Evaluate at critical point and endpoints:</span><div class='math-block'>\\( f(0) = 0 \\)<br>\\( f(2) = 16 - 12 - 24 = -20 \\) (minimum)<br>\\( f(3) = 54 - 27 - 36 = -9 \\)</div><span class='step-label'>Step 3 — Determine the image:</span>The minimum value is \\( -20 \\) (at \\( x = 2 \\)) and the maximum is \\( 0 \\) (at \\( x = 0 \\)).<span class='step-label'>Step 4 — Conclusion:</span>Image \\( = [-20,\\, 0] \\).<span class='answer-line'>Answer: b.</span>"
+  },
+  {
+    topic: 4,
+    question: "Using the variation table: \\( f \\) decreases on \\( (-\\infty, 8] \\) from \\( +\\infty \\) to \\( 0 \\), increases on \\( [8, 9] \\) from \\( 0 \\) to \\( 9 \\), decreases on \\( [9, +\\infty[ \\) from \\( 9 \\) to \\( -9 \\). The image of \\( I = [8,\\, +\\infty[ \\) is:",
+    options: ["\\( ]-9,\\, 9] \\)", "\\( [0,\\, 9] \\)", "\\( ]-9,\\, +\\infty[ \\)"],
+    correct: 0,
+    hint: "Combine the images of \\( [8, 9] \\) and \\( [9, +\\infty[ \\).",
+    solution: "<span class='step-label'>Step 1 — Image of \\( [8, 9] \\):</span>On \\( [8, 9] \\), \\( f \\) increases from \\( 0 \\) to \\( 9 \\). So \\( f([8, 9]) = [0, 9] \\).<span class='step-label'>Step 2 — Image of \\( [9, +\\infty[ \\):</span>On \\( [9, +\\infty[ \\), \\( f \\) decreases from \\( 9 \\) (achieved at \\( x = 9 \\)) toward \\( -9 \\) (limit as \\( x \\to +\\infty \\), not achieved). So \\( f([9, +\\infty[) = ]-9, 9] \\).<span class='step-label'>Step 3 — Union:</span>\\( f([8, +\\infty[) = [0, 9] \\cup ]-9, 9] = ]-9, 9] \\).<span class='step-label'>Step 4 — Conclusion:</span>Image \\( = ]-9,\\, 9] \\).<span class='answer-line'>Answer: a.</span>"
+  },
+  {
+    topic: 4,
+    question: "Using the same variation table. The image of \\( J = ]-\\infty,\\, 8[ \\) under \\( f \\) is:",
+    options: ["\\( [0,\\, +\\infty[ \\)", "\\( ]0,\\, +\\infty[ \\)", "\\( ]-\\infty,\\, 0[ \\)"],
+    correct: 1,
+    hint: "\\( f \\) decreases from \\( +\\infty \\) (at \\( -\\infty \\)) to \\( 0 \\) (at \\( x = 8 \\), excluded).",
+    solution: "<span class='step-label'>Step 1 — Analyze behavior on \\( ]-\\infty, 8[ \\):</span>On \\( ]-\\infty, 8] \\), \\( f \\) is decreasing from \\( +\\infty \\) to \\( 0 \\).<span class='step-label'>Step 2 — Compute limits/values:</span><div class='math-block'>\\( \\lim_{x \\to -\\infty} f(x) = +\\infty \\)<br>\\( \\lim_{x \\to 8^-} f(x) = 0^+ \\) (since \\( x = 8 \\) is excluded, \\( 0 \\) is not achieved)</div><span class='step-label'>Step 3 — Determine the image:</span>\\( f \\) takes all values strictly between \\( 0 \\) and \\( +\\infty \\), but neither \\( 0 \\) nor \\( +\\infty \\) is achieved.<span class='step-label'>Step 4 — Conclusion:</span>Image \\( = ]0,\\, +\\infty[ \\).<span class='answer-line'>Answer: b.</span>"
+  },
+  {
+    topic: 4,
+    question: "Let \\( f(x) = x^2 - 4x + 3 \\). The image of \\( [0,\\, 3] \\) under \\( f \\) is:",
+    options: ["\\( [-1,\\, 3] \\)", "\\( [0,\\, 3] \\)", "\\( [-1,\\, 0] \\)"],
+    correct: 0,
+    hint: "\\( f'(x) = 2x - 4 = 0 \\) at \\( x = 2 \\in [0, 3] \\).",
+    solution: "<span class='step-label'>Step 1 — Compute derivative and find critical points:</span>\\( f'(x) = 2x - 4 = 0 \\implies x = 2 \\), which lies in \\( [0, 3] \\).<span class='step-label'>Step 2 — Evaluate at critical point and endpoints:</span><div class='math-block'>\\( f(0) = 0 - 0 + 3 = 3 \\)<br>\\( f(2) = 4 - 8 + 3 = -1 \\) (minimum)<br>\\( f(3) = 9 - 12 + 3 = 0 \\)</div><span class='step-label'>Step 3 — Determine the image:</span>The minimum value is \\( -1 \\) (at \\( x = 2 \\)) and the maximum is \\( 3 \\) (at \\( x = 0 \\)).<span class='step-label'>Step 4 — Conclusion:</span>Image \\( = [-1,\\, 3] \\).<span class='answer-line'>Answer: a.</span>"
+  },
+
+  /* ===== TOPIC 5: DOMAIN OF DEFINITION (Q33 - Q40) ===== */
+  {
+    topic: 5,
+    question: "Let \\( f(x) = \\dfrac{1}{2 - \\sqrt{x}} \\). The domain of definition of \\( f \\) is:",
+    options: [
+      "\\( \\mathbb{R} \\setminus \\{0\\} \\)",
+      "\\( [0,\\, 4[ \\, \\cup \\, ]4,\\, +\\infty[ \\)",
+      "\\( [0,\\, +\\infty[ \\)"
+    ],
+    correct: 1,
+    hint: "Need \\( x \\geq 0 \\) (for \\( \\sqrt{x} \\)) and \\( 2 - \\sqrt{x} \\neq 0 \\).",
+    solution: "<span class='step-label'>Step 1 — Condition from the square root:</span>\\( \\sqrt{x} \\) is defined only when \\( x \\geq 0 \\).<span class='step-label'>Step 2 — Condition from the denominator:</span>\\( 2 - \\sqrt{x} \\neq 0 \\), i.e., \\( \\sqrt{x} \\neq 2 \\), i.e., \\( x \\neq 4 \\).<span class='step-label'>Step 3 — Combine conditions:</span>We need \\( x \\geq 0 \\) AND \\( x \\neq 4 \\).<span class='step-label'>Step 4 — Conclusion:</span>Domain \\( = [0, 4[ \\, \\cup \\, ]4, +\\infty[ \\).<span class='answer-line'>Answer: b.</span>"
+  },
+  {
+    topic: 5,
+    question: "Let \\( f(x) = \\dfrac{1}{x^2 - 4} \\). The domain of definition of \\( f \\) is:",
+    options: [
+      "\\( \\mathbb{R} \\setminus \\{2\\} \\)",
+      "\\( \\mathbb{R} \\setminus \\{-2,\\, 2\\} \\)",
+      "\\( ]-\\infty,\\, -2] \\cup [2,\\, +\\infty[ \\)"
+    ],
+    correct: 1,
+    hint: "Denominator \\( x^2 - 4 = (x - 2)(x + 2) \\) must be \\( \\neq 0 \\).",
+    solution: "<span class='step-label'>Step 1 — Identify the constraint:</span>The denominator must not be zero: \\( x^2 - 4 \\neq 0 \\).<span class='step-label'>Step 2 — Factor and solve:</span>\\( x^2 - 4 = (x - 2)(x + 2) \\neq 0 \\), so \\( x \\neq 2 \\) and \\( x \\neq -2 \\).<span class='step-label'>Step 3 — Conclusion:</span>Domain \\( = \\mathbb{R} \\setminus \\{-2,\\, 2\\} \\).<span class='answer-line'>Answer: b.</span>"
+  },
+  {
+    topic: 5,
+    question: "Let \\( f(x) = \\sqrt{x^2 - 9} \\). The domain of definition of \\( f \\) is:",
+    options: [
+      "\\( [-3,\\, 3] \\)",
+      "\\( ]-\\infty,\\, -3] \\cup [3,\\, +\\infty[ \\)",
+      "\\( \\mathbb{R} \\)"
+    ],
+    correct: 1,
+    hint: "Need \\( x^2 - 9 \\geq 0 \\).",
+    solution: "<span class='step-label'>Step 1 — Identify the constraint:</span>The expression under the square root must be non-negative: \\( x^2 - 9 \\geq 0 \\).<span class='step-label'>Step 2 — Solve the inequality:</span>\\( x^2 \\geq 9 \\implies x \\leq -3 \\) or \\( x \\geq 3 \\).<span class='step-label'>Step 3 — Conclusion:</span>Domain \\( = ]-\\infty,\\, -3] \\cup [3,\\, +\\infty[ \\).<span class='answer-line'>Answer: b.</span>"
+  },
+  {
+    topic: 5,
+    question: "Let \\( f(x) = \\sqrt{-x^2 + 4x - 3} \\). The domain of definition of \\( f \\) is:",
+    options: ["\\( [1,\\, 3] \\)", "\\( ]-\\infty,\\, 1] \\cup [3,\\, +\\infty[ \\)", "\\( \\mathbb{R} \\)"],
+    correct: 0,
+    hint: "Need \\( -x^2 + 4x - 3 \\geq 0 \\), equivalently \\( x^2 - 4x + 3 \\leq 0 \\).",
+    solution: "<span class='step-label'>Step 1 — Identify the constraint:</span>\\( -x^2 + 4x - 3 \\geq 0 \\). Multiplying by \\( -1 \\) (reversing the inequality): \\( x^2 - 4x + 3 \\leq 0 \\).<span class='step-label'>Step 2 — Factor the quadratic:</span>\\( x^2 - 4x + 3 = (x - 1)(x - 3) \\).<span class='step-label'>Step 3 — Solve the inequality:</span>\\( (x - 1)(x - 3) \\leq 0 \\). Since the leading coefficient is positive, the quadratic is \\( \\leq 0 \\) between the roots: \\( x \\in [1, 3] \\).<span class='step-label'>Step 4 — Conclusion:</span>Domain \\( = [1,\\, 3] \\).<span class='answer-line'>Answer: a.</span>"
+  },
+  {
+    topic: 5,
+    question: "Let \\( f(x) = \\dfrac{1}{x^2 - 5x + 6} \\). The domain of definition of \\( f \\) is:",
+    options: [
+      "\\( \\mathbb{R} \\setminus \\{2,\\, 3\\} \\)",
+      "\\( \\mathbb{R} \\setminus \\{-2,\\, -3\\} \\)",
+      "\\( ]-\\infty,\\, 2] \\cup [3,\\, +\\infty[ \\)"
+    ],
+    correct: 0,
+    hint: "Factor: \\( x^2 - 5x + 6 = (x - 2)(x - 3) \\neq 0 \\).",
+    solution: "<span class='step-label'>Step 1 — Identify the constraint:</span>\\( x^2 - 5x + 6 \\neq 0 \\).<span class='step-label'>Step 2 — Factor and solve:</span>\\( x^2 - 5x + 6 = (x - 2)(x - 3) \\neq 0 \\), so \\( x \\neq 2 \\) and \\( x \\neq 3 \\).<span class='step-label'>Step 3 — Conclusion:</span>Domain \\( = \\mathbb{R} \\setminus \\{2,\\, 3\\} \\).<span class='answer-line'>Answer: a.</span>"
+  },
+  {
+    topic: 5,
+    question: "Let \\( f(x) = \\sqrt{x^2 + 2x - 3} \\). The domain of definition of \\( f \\) is:",
+    options: [
+      "\\( [-3,\\, 1] \\)",
+      "\\( ]-\\infty,\\, -3] \\cup [1,\\, +\\infty[ \\)",
+      "\\( \\mathbb{R} \\)"
+    ],
+    correct: 1,
+    hint: "Need \\( x^2 + 2x - 3 \\geq 0 \\). Factor: \\( (x + 3)(x - 1) \\).",
+    solution: "<span class='step-label'>Step 1 — Identify the constraint:</span>\\( x^2 + 2x - 3 \\geq 0 \\).<span class='step-label'>Step 2 — Factor the quadratic:</span>\\( x^2 + 2x - 3 = (x + 3)(x - 1) \\).<span class='step-label'>Step 3 — Solve the inequality:</span>\\( (x + 3)(x - 1) \\geq 0 \\). Since the leading coefficient is positive, the quadratic is \\( \\geq 0 \\) outside the roots: \\( x \\leq -3 \\) or \\( x \\geq 1 \\).<span class='step-label'>Step 4 — Conclusion:</span>Domain \\( = ]-\\infty,\\, -3] \\cup [1,\\, +\\infty[ \\).<span class='answer-line'>Answer: b.</span>"
+  },
+  {
+    topic: 5,
+    question: "Let \\( f(x) = \\dfrac{x + 1}{x^2 - 1} \\). The domain of definition of \\( f \\) is:",
+    options: [
+      "\\( \\mathbb{R} \\setminus \\{-1,\\, 1\\} \\)",
+      "\\( \\mathbb{R} \\setminus \\{1\\} \\)",
+      "\\( \\mathbb{R} \\setminus \\{-1\\} \\)"
+    ],
+    correct: 0,
+    hint: "Denominator factors as \\( (x - 1)(x + 1) \\); cannot cancel since 0/0 form at \\( x = -1 \\).",
+    solution: "<span class='step-label'>Step 1 — Identify the constraint:</span>\\( x^2 - 1 \\neq 0 \\).<span class='step-label'>Step 2 — Factor and solve:</span>\\( x^2 - 1 = (x - 1)(x + 1) \\neq 0 \\), so \\( x \\neq 1 \\) and \\( x \\neq -1 \\).<span class='step-label'>Step 3 — Note on simplification:</span>Although \\( f(x) = \\frac{(x+1)}{(x-1)(x+1)} \\), we cannot cancel \\( (x+1) \\) because at \\( x = -1 \\) the original function is undefined (0/0 form). The domain is determined by the original expression.<span class='step-label'>Step 4 — Conclusion:</span>Domain \\( = \\mathbb{R} \\setminus \\{-1,\\, 1\\} \\).<span class='answer-line'>Answer: a.</span>"
+  },
+  {
+    topic: 5,
+    question: "Let \\( f(x) = \\dfrac{\\sqrt{4 - x^2}}{x - 1} \\). The domain of definition of \\( f \\) is:",
+    options: [
+      "\\( [-2,\\, 2] \\setminus \\{1\\} = [-2,\\, 1[ \\, \\cup \\, ]1,\\, 2] \\)",
+      "\\( [-2,\\, 1[ \\, \\cup \\, ]1,\\, 2] \\)",
+      "\\( [-2,\\, 2] \\)"
+    ],
+    correct: 0,
+    hint: "Need \\( 4 - x^2 \\geq 0 \\) AND \\( x - 1 \\neq 0 \\).",
+    solution: "<span class='step-label'>Step 1 — Condition from the square root:</span>\\( 4 - x^2 \\geq 0 \\implies x^2 \\leq 4 \\implies x \\in [-2, 2] \\).<span class='step-label'>Step 2 — Condition from the denominator:</span>\\( x - 1 \\neq 0 \\implies x \\neq 1 \\).<span class='step-label'>Step 3 — Combine conditions:</span>We need \\( x \\in [-2, 2] \\) AND \\( x \\neq 1 \\).<span class='step-label'>Step 4 — Conclusion:</span>Domain \\( = [-2, 2] \\setminus \\{1\\} = [-2, 1[ \\, \\cup \\, ]1, 2] \\).<span class='answer-line'>Answer: a.</span>"
+  }
+];
+
+/* Topic metadata */
+const topics = {
+  1: { title: "Sign of a Function", desc: "Determine the sign of polynomial and rational functions on given intervals using discriminants, factoring, and sign tables." },
+  2: { title: "Inflection Points", desc: "Find inflection points by solving \\( f''(x) = 0 \\) and verifying sign changes of the second derivative." },
+  3: { title: "Limits Using L'Hôpital's Rule", desc: "Compute limits of the form \\( 0/0 \\) or \\( \\infty/\\infty \\) by differentiating numerator and denominator." },
+  4: { title: "Image of a Function under an Interval", desc: "Find \\( f(I) \\) by analyzing critical points, monotonicity, and endpoint values." },
+  5: { title: "Domain of Definition", desc: "Determine domains of rational and irrational functions (including quadratic expressions under square roots)." }
+};
+
+/* State */
+const state = {
+  answers: new Array(questions.length).fill(null),
+  hintsShown: new Array(questions.length).fill(false),
+  solutionsShown: new Array(questions.length).fill(false)
+};
+
+let mathJaxReady = false;
+window.onMathJaxReady = () => { mathJaxReady = true; };
+
+function typeset(elements) {
+  if (window.MathJax && window.MathJax.typesetPromise) {
+    return MathJax.typesetPromise(elements);
+  }
+  return Promise.resolve();
+}
+
+/* Render the quiz */
+function render() {
+  const container = document.getElementById('quiz');
+  let html = '';
+  let currentTopic = 0;
+  let qCounter = 0;
+
+  questions.forEach((q, qi) => {
+    if (q.topic !== currentTopic) {
+      if (currentTopic !== 0) html += '</div>';
+      currentTopic = q.topic;
+      const t = topics[currentTopic];
+      html += `<div class="topic" id="topic${currentTopic}">`;
+      html += `<h2>${currentTopic}. ${t.title} <span class="badge">8 questions</span></h2>`;
+      html += `<div class="topic-desc">${t.desc}</div>`;
+    }
+    qCounter++;
+    html += renderQuestion(q, qi, qCounter);
+  });
+  if (currentTopic !== 0) html += '</div>';
+  container.innerHTML = html;
+  attachEvents();
+  updateScore();
+  // Typeset all math
+  typeset([container]);
+}
+
+function renderQuestion(q, qi, n) {
+  const opts = q.options.map((opt, oi) => `
+    <li data-q="${qi}" data-o="${oi}">
+      <span class="opt-letter">${String.fromCharCode(97 + oi)}</span>
+      <span class="opt-text">${opt}</span>
+    </li>
+  `).join('');
+
+  return `
+    <div class="question" id="q${qi}">
+      <div class="q-text">
+        <span class="q-number">${n}</span>
+        <span class="q-content">${q.question}</span>
+      </div>
+      <ul class="options">${opts}</ul>
+      <div class="feedback" id="fb${qi}"></div>
+      <div class="actions">
+        <button class="hint-btn" data-q="${qi}">Show Hint</button>
+        <button class="solution-btn" data-q="${qi}">Show Solution</button>
+      </div>
+      <div class="hint" id="hint${qi}"><span class="step-label">Hint:</span> ${q.hint}</div>
+      <div class="solution" id="sol${qi}">${q.solution}</div>
+    </div>
+  `;
+}
+
+function attachEvents() {
+  document.querySelectorAll('.options li').forEach(li => {
+    li.addEventListener('click', () => {
+      const qi = parseInt(li.dataset.q);
+      const oi = parseInt(li.dataset.o);
+      if (state.answers[qi] !== null) return;
+      selectOption(qi, oi);
+    });
+  });
+  document.querySelectorAll('.hint-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const qi = parseInt(btn.dataset.q);
+      const el = document.getElementById('hint' + qi);
+      el.classList.toggle('visible');
+      state.hintsShown[qi] = el.classList.contains('visible');
+      btn.textContent = state.hintsShown[qi] ? 'Hide Hint' : 'Show Hint';
+      if (state.hintsShown[qi]) typeset([el]);
+    });
+  });
+  document.querySelectorAll('.solution-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const qi = parseInt(btn.dataset.q);
+      const el = document.getElementById('sol' + qi);
+      el.classList.toggle('visible');
+      state.solutionsShown[qi] = el.classList.contains('visible');
+      btn.textContent = state.solutionsShown[qi] ? 'Hide Solution' : 'Show Solution';
+      if (state.solutionsShown[qi]) typeset([el]);
+    });
+  });
+}
+
+function selectOption(qi, oi) {
+  state.answers[qi] = oi;
+  const q = questions[qi];
+  const opts = document.querySelectorAll(`.options li[data-q="${qi}"]`);
+  opts.forEach(li => {
+    li.classList.add('disabled');
+    li.classList.remove('selected');
+    const liOI = parseInt(li.dataset.o);
+    if (liOI === oi) {
+      li.classList.add(oi === q.correct ? 'correct-answer' : 'wrong-answer');
+    }
+    if (liOI === q.correct && liOI !== oi) {
+      li.classList.add('correct-answer');
+    }
+  });
+
+  const qCard = document.getElementById('q' + qi);
+  qCard.classList.add('answered', oi === q.correct ? 'correct' : 'incorrect');
+
+  const fb = document.getElementById('fb' + qi);
+  if (oi === q.correct) {
+    fb.innerHTML = '✓ Correct!';
+    fb.className = 'feedback visible correct';
+  } else {
+    fb.innerHTML = `✗ Wrong. The correct answer is <strong>${String.fromCharCode(97 + q.correct)}</strong>.`;
+    fb.className = 'feedback visible incorrect';
+  }
+  updateScore();
+}
+
+function updateScore() {
+  let answered = 0, correct = 0, wrong = 0;
+  state.answers.forEach((a, qi) => {
+    if (a !== null) {
+      answered++;
+      if (a === questions[qi].correct) correct++;
+      else wrong++;
+    }
+  });
+  document.getElementById('answered').textContent = answered;
+  document.getElementById('correct').textContent = correct;
+  document.getElementById('wrong').textContent = wrong;
+  document.getElementById('progressFill').style.width = (answered / questions.length * 100) + '%';
+}
+
+function revealAllHints() {
+  document.querySelectorAll('.hint').forEach(el => {
+    el.classList.add('visible');
+    typeset([el]);
+  });
+  document.querySelectorAll('.hint-btn').forEach(btn => btn.textContent = 'Hide Hint');
+  state.hintsShown = state.hintsShown.map(() => true);
+}
+
+function revealAllSolutions() {
+  document.querySelectorAll('.solution').forEach(el => {
+    el.classList.add('visible');
+    typeset([el]);
+  });
+  document.querySelectorAll('.solution-btn').forEach(btn => btn.textContent = 'Hide Solution');
+  state.solutionsShown = state.solutionsShown.map(() => true);
+}
+
+function resetAll() {
+  if (!confirm('Reset all answers, hints, and solutions?')) return;
+  state.answers = new Array(questions.length).fill(null);
+  state.hintsShown = new Array(questions.length).fill(false);
+  state.solutionsShown = new Array(questions.length).fill(false);
+  render();
+}
+
+/* Initialize */
+render();
+</script>
+</body>
+</html>
